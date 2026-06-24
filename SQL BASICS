@@ -1,0 +1,886 @@
+MySQL Shell 9.7.1 
+Copyright (c) 2016, 2026, Oracle and/or its affiliates. 
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. 
+Other names may be trademarks of their respective owners. 
+Type '\help' or '\?' for help; '\quit' to exit. 
+MySQL  SQL > \connect root@localhost 
+Creating a session to 'root@localhost' 
+Fetching global names for auto-completion... Press ^C to stop. 
+Your MySQL connection id is 24 
+Server version: 8.0.46 MySQL Community Server - GPL 
+No default schema selected; type \use <schema> to set one. 
+MySQL  localhost:3306 ssl  SQL > \sql 
+MySQL  localhost:3306 ssl  SQL > SHOW DATABASES; 
++--------------------+ 
+| Database          
+ | 
++--------------------+ 
+| akhil             
+ | 
+| information_schema | 
+| mani               
+| my_database       
+| mysql             
+| 
+ | 
+ | 
+| performance_schema | 
++--------------------+ 
+6 rows in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  SQL > USE AKHIL; 
+Default schema set to `AKHIL`. 
+Fetching global names, object names from `akhil` for auto-completion... Press ^C to stop. 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLES; 
++-----------------+ 
+| Tables_in_akhil | 
++-----------------+ 
+| akhil          
+| mani            
+| sai             
+ | 
+| 
+| 
++-----------------+ 
+3 rows in set (0.0064 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE AKHIL; 
+ERROR: 1050 (42S01): Table 'akhil' already exists 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID TINYINT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID TINYINT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID tinyint); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID tinyint)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE akhil(ID tinyint); 
+ERROR: 1050 (42S01): Table 'akhil' already exists 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID int); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID int)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID INT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLES; 
++-----------------+ 
+| Tables_in_akhil | 
++-----------------+ 
+| akhil          
+ | 
+| mani            
+| sai             
+| 
+| 
++-----------------+ 
+3 rows in set (0.0045 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW DATABASES; 
++--------------------+ 
+| Database          
+ | 
++--------------------+ 
+| akhil             
+ | 
+| information_schema | 
+| mani               
+| my_database       
+| mysql             
+| 
+ | 
+ | 
+| performance_schema | 
++--------------------+ 
+6 rows in set (0.0018 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT; 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYINT(ID INT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINYINT(ID INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINY_INT(ID INT); 
+Query OK, 0 rows affected (0.0655 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(10); 
+Query OK, 1 row affected (0.0209 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(20); 
+Query OK, 1 row affected (0.0090 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM TINY_INT; 
++----+ 
+| ID | 
++----+ 
+| 10 | 
+| 20 | 
++----+ 
+2 rows in set (0.0010 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(640); 
+Query OK, 1 row affected (0.0232 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM TINY_INT; 
++-----+ 
+| ID  | 
++-----+ 
+|  10 | 
+|  20 | 
+| 640 | 
++-----+ 
+3 rows in set (0.0014 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(640097); 
+Query OK, 1 row affected (0.0184 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(6400978735376273); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(6400978735); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(6400978); 
+Query OK, 1 row affected (0.0430 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(64009789); 
+Query OK, 1 row affected (0.0101 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(640097897); 
+Query OK, 1 row affected (0.0095 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(6400978978); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM TINY_INT; 
++-----------+ 
+| ID       
+ | 
++-----------+ 
+|        
+10 | 
+|        
+|      
+20 | 
+ 640 | 
+|    640097 | 
+|   6400978 | 
+|  64009789 | 
+| 640097897 | 
++-----------+ 
+7 rows in set (0.0009 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SMALL_INT(ID SMALL_INT) -> ; 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'SMALL_INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SMALL_INT(ID SMALLINT) ; 
+Query OK, 0 rows affected (0.0373 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(500); 
+Query OK, 1 row affected (0.0127 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(5000); 
+Query OK, 1 row affected (0.0099 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(5000000); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(50000); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(23000); 
+Query OK, 1 row affected (0.0210 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(33000); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_INT VALUES(33000); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM SMALL_INT; 
++-------+ 
+| ID    | 
++-------+ 
+|   500 | 
+|  5000 | 
+| 23000 | 
++-------+ 
+3 rows in set (0.0011 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE BIG_INT(ID BIGINT); 
+Query OK, 0 rows affected (0.0560 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO BIG_INT VALUES(6303764074); 
+Query OK, 1 row affected (0.0288 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO BIG_INT VALUES(63037640746); 
+Query OK, 1 row affected (0.0257 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO BIG_INT VALUES(9505575102); 
+Query OK, 1 row affected (0.0292 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM BIG_INT; 
++-------------+ 
+| ID         
+ | 
++-------------+ 
+|  6303764074 | 
+| 63037640746 | 
+|  9505575102 | 
++-------------+ 
+3 rows in set (0.0011 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SMALLINT(ID SMALLINT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'SMALLINT(ID SMALLINT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SMALL_INT(ID SMALLINT); 
+ERROR: 1050 (42S01): Table 'small_int' already exists 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SMALL_IN(ID SMALLINT); 
+Query OK, 0 rows affected (0.0679 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(1); 
+Query OK, 1 row affected (0.0098 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(110); 
+Query OK, 1 row affected (0.0259 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(1100); 
+Query OK, 1 row affected (0.0286 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(11000); 
+Query OK, 1 row affected (0.0259 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(1100005); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(115); 
+Query OK, 1 row affected (0.0227 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(1155); 
+Query OK, 1 row affected (0.0230 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(11559); 
+Query OK, 1 row affected (0.0412 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(115598); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM SMALL_IN; 
++-------+ 
+| ID    | 
++-------+ 
+|     1 | 
+|   110 | 
+|  1100 | 
+| 11000 | 
+|   115 | 
+|  1155 | 
+| 11559 | 
++-------+ 
+7 rows in set (0.0011 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLES; 
++-----------------+ 
+| Tables_in_akhil | 
++-----------------+ 
+| akhil          
+| big_int         
+| mani            
+| sai             
+| small_in        
+| small_int      
+| tiny_int        
+ | 
+| 
+| 
+| 
+| 
+ | 
+| 
++-----------------+ 
+7 rows in set (0.0049 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(115598)(7663698); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near '(7663698)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES((115598)(7663698)); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near '(7663698))' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES((115598),(7663698)); 
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(115598),(7663698); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SMALL_IN VALUES(115598),(76636); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO BIG_INT VALUES(9505575102); 
+Query OK, 1 row affected (0.0179 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO BIG_INT VALUES(9505575102),(9705474571); 
+Query OK, 2 rows affected (0.0137 sec) 
+Records: 2  Duplicates: 0  Warnings: 0 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM BIG_INT; 
++-------------+ 
+| ID         
+ | 
++-------------+ 
+|  6303764074 | 
+| 63037640746 | 
+|  9505575102 | 
+|  9505575102 | 
+|  9505575102 | 
+|  9705474571 | 
++-------------+ 
+6 rows in set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(6400978978); 
+ERROR: 1264 (22003): Out of range value for column 'ID' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINY_INT VALUES(640097897); 
+Query OK, 1 row affected (0.0208 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM TINY_INT; 
++-----------+ 
+| ID       
+ | 
++-----------+ 
+|        
+|        
+|      
+10 | 
+20 | 
+ 640 | 
+|    640097 | 
+|   6400978 | 
+|  64009789 | 
+| 640097897 | 
+| 640097897 | 
++-----------+ 
+8 rows in set (0.0010 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINY_IN(SMALL NUMBER TINYINT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NUMBER TINYINT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINY_IN(SMALL NUMBER TINY_INT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NUMBER TINY_INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYIN(SMALL NUMBER TINY_INT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NUMBER TINY_INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYIN(SMALLNUMBER TINY_INT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'TINY_INT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE TINYIN(SMALLNUMBER TINYINT); 
+Query OK, 0 rows affected (0.0480 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(100); 
+Query OK, 1 row affected (0.0092 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(1000); 
+ERROR: 1264 (22003): Out of range value for column 'SMALLNUMBER' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(150); 
+ERROR: 1264 (22003): Out of range value for column 'SMALLNUMBER' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(120); 
+Query OK, 1 row affected (0.0131 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(126); 
+Query OK, 1 row affected (0.0097 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(127); 
+Query OK, 1 row affected (0.0238 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO TINYIN VALUES(128); 
+ERROR: 1264 (22003): Out of range value for column 'SMALLNUMBER' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM TINYIN; 
++-------------+ 
+| SMALLNUMBER | 
++-------------+ 
+|         
+100 | 
+|         
+120 | 
+|         
+|         
+126 | 
+127 | 
++-------------+ 
+4 rows in set (0.0010 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT_TABLE(FLOAT_VALUES FLOAT(4.3)); 
+Query OK, 0 rows affected (0.0626 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE VALUES(1288.786); 
+Query OK, 1 row affected (0.0298 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE VALUES(1288.7869); 
+Query OK, 1 row affected (0.0140 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE VALUES(1288.78698); 
+Query OK, 1 row affected (0.0133 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
++--------------+ 
+3 rows in set (0.0059 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE VALUES(9946288.7746384644); 
+Query OK, 1 row affected (0.0086 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
++--------------+ 
+4 rows in set (0.0020 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT_TABLE(FLOAT_VALUES FLOAT(4,3)); 
+ERROR: 1050 (42S01): Table 'float_table' already exists 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT_TABL(FLOAT_VALUES FLOAT(4,3)); 
+Query OK, 0 rows affected, 1 warning (0.0622 sec) 
+Warning (code 1681): Specifying number of digits for floating point data types is deprecated and will 
+be removed in a future release. 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(9946288.7746384644); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(99488.7746384644); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(99488.774634); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(99488.7746); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(99488.774); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(9948.774); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(9948.77); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(994.77); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(994.7); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(994.); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(994); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABL VALUES(99); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
++--------------+ 
+4 rows in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABL; 
+Empty set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABL; 
+Empty set (0.0065 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABL; 
+Empty set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE VALUES(9946288.7746384644); 
+Query OK, 1 row affected (0.0399 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(994628887575556756468.777); 
+Query OK, 1 row affected (0.0279 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(994628887575556757564543659876876468.777); 
+Query OK, 1 row affected (0.0132 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
+|      9946290 | 
+|   9.94629e20 | 
+|   9.94629e35 | 
++--------------+ 
+7 rows in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(99462888757555675756454365987687646787539658347538653875983465934857395703
+8.777); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(994628887575556757564543659876876468.77779677); 
+Query OK, 1 row affected (0.0451 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(994628887575556757564543659876876468.77779677787365324759823465234985); 
+Query OK, 1 row affected (0.0110 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
+|      9946290 | 
+|   9.94629e20 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
++--------------+ 
+9 rows in set (0.0010 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(994628887575556757564543659876876468.7777967778736532475982346523498575632
+5839486592436); 
+Query OK, 1 row affected (0.0069 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(997584628887575556757564543659876876468.7777967778736532475982346523498575
+6325839486592436); 
+ERROR: 1264 (22003): Out of range value for column 'FLOAT_VALUES' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(7575556757564543659876876468.777796757356348537787365324759823465234985756
+325839486592436); 
+Query OK, 1 row affected (0.0118 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
+|      9946290 | 
+|   9.94629e20 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   7.57556e27 | 
++--------------+ 
+11 rows in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(7575556757564543659876876468.777796757356348537787365324759823465234985756
+325839486592436); 
+Query OK, 1 row affected (0.0262 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(7575556757564543659876876468.777796757356348537787365324759823465234985756
+325839486592436); 
+Query OK, 1 row affected (0.0168 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(7575556757564543676468.777796757356348537787365324759823465234985756325839
+486592436); 
+Query OK, 1 row affected (0.0217 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO FLOAT_TABLE 
+VALUES(77575556757564543659876876468.77779675735634853778736532475982346523498575
+6325839486592436); 
+Query OK, 1 row affected (0.0357 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM FLOAT_TABLE; 
++--------------+ 
+| FLOAT_VALUES | 
++--------------+ 
+|      1288.79 | 
+|      1288.79 | 
+|      1288.79 | 
+|      9946290 | 
+|      9946290 | 
+|   9.94629e20 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   9.94629e35 | 
+|   7.57556e27 | 
+|   7.57556e27 | 
+|   7.57556e27 | 
+|   7.57556e21 | 
+|   7.75756e28 | 
++--------------+ 
+15 rows in set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLES; 
++-----------------+ 
+| Tables_in_akhil | 
++-----------------+ 
+| akhil          
+| big_int         
+| float_tabl     
+ | 
+| 
+ | 
+| float_table     
+| mani            
+| sai             
+| small_in        
+| 
+| 
+| 
+| 
+| small_int      
+| tiny_int        
+| tinyin          
+ | 
+| 
+| 
++-----------------+ 
+10 rows in set (0.0044 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW DATABASES; 
++--------------------+ 
+| Database          
+ | 
++--------------------+ 
+| akhil             
+ | 
+| information_schema | 
+| mani               
+| my_database       
+| mysql             
+| 
+ | 
+ | 
+| performance_schema | 
++--------------------+ 
+6 rows in set (0.0025 sec) 
+22/06/2026 
+MySQL Shell 9.7.1 
+Copyright (c) 2016, 2026, Oracle and/or its affiliates. 
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates. 
+Other names may be trademarks of their respective owners. 
+Type '\help' or '\?' for help; '\quit' to exit. 
+MySQL  SQL > \connect root@localhost 
+Creating a session to 'root@localhost' 
+Fetching global names for auto-completion... Press ^C to stop. 
+Your MySQL connection id is 25 
+Server version: 8.0.46 MySQL Community Server - GPL 
+No default schema selected; type \use <schema> to set one. 
+MySQL  localhost:3306 ssl  SQL > \sql 
+MySQL  localhost:3306 ssl  SQL > show databases -> ; 
++--------------------+ 
+| Database          
+ | 
++--------------------+ 
+| akhil             
+ | 
+| information_schema | 
+| mani               
+| my_database       
+| mysql             
+| 
+ | 
+ | 
+| performance_schema | 
++--------------------+ 
+6 rows in set (0.0113 sec) 
+MySQL  localhost:3306 ssl  SQL > SHOW TABLES; 
+ERROR: 1046 (3D000): No database selected 
+MySQL  localhost:3306 ssl  SQL > SHOW TABLES; 
+ERROR: 1046 (3D000): No database selected 
+MySQL  localhost:3306 ssl  SQL > USE AKHIL; 
+Default schema set to `AKHIL`. 
+Fetching global names, object names from `akhil` for auto-completion... Press ^C to stop. 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLE; 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near '' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SHOW TABLES; 
++-----------------+ 
+| Tables_in_akhil | 
++-----------------+ 
+| akhil          
+ | 
+| big_int         
+| float_tabl     
+| float_table     
+| mani            
+| sai             
+| small_in        
+| small_int      
+| tiny_int        
+| tinyin          
+| 
+| 
+| 
+| 
+ | 
+| 
+| 
+ | 
+| 
++-----------------+ 
+10 rows in set (0.0046 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT(DECIMALS FLOAT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'FLOAT(DECIMALS FLOAT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT(DECIMALS FLOAT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'FLOAT(DECIMALS FLOAT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE FLOAT(DECIMALS FLOAT(4,2)); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'FLOAT(DECIMALS FLOAT(4,2))' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE DOUBLE_FLOAT(ID DOUBLE); 
+Query OK, 0 rows affected (0.2262 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DOUBLE_FLOAT VALUES(274376562.257635); 
+Query OK, 1 row affected (0.0217 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM DOUBLE_FLOAT; 
++------------------+ 
+| ID              
+ | 
++------------------+ 
+| 274376562.257635 | 
++------------------+ 
+1 row in set (0.0007 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DOUBLE_FLOAT 
+VALUES(274376562.257635765683737658376); 
+Query OK, 1 row affected (0.0079 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM DOUBLE_FLOAT; 
++-------------------+ 
+| ID                
+| 
++-------------------+ 
+|  274376562.257635 | 
+| 274376562.2576358 | 
++-------------------+ 
+2 rows in set (0.0014 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DOUBLE_FLOAT 
+VALUES(7686518646548416549816562.257635765683737658376); 
+Query OK, 1 row affected (0.0202 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM DOUBLE_FLOAT; 
++----------------------+ 
+| ID                   
+| 
++----------------------+ 
+|     274376562.257635 | 
+|    274376562.2576358 | 
+| 7.686518646548417e24 | 
++----------------------+ 
+3 rows in set (0.0007 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE DECIMAL(DECIMAL DECIMAL); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'DECIMAL(DECIMAL DECIMAL)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE DECIMAL_TABLE(DECIMAL DECIMAL); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'DECIMAL DECIMAL)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE DECIMAL_TABLE(DECIMAL_VALUE DECIMAL); 
+Query OK, 0 rows affected (0.0564 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DECIMAL_TABLE VALUES(7676356.78457); 
+Query OK, 1 row affected, 1 warning (0.0107 sec) 
+Note (code 1265): Data truncated for column 'DECIMAL_VALUE' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT* FROM DECIMAL_TABLE; 
++---------------+ 
+| DECIMAL_VALUE | 
++---------------+ 
+|      
+ 7676357 | 
++---------------+ 
+1 row in set (0.0014 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DECIMAL_TABLE VALUES(7676356.58457); 
+Query OK, 1 row affected, 1 warning (0.0102 sec) 
+Note (code 1265): Data truncated for column 'DECIMAL_VALUE' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT* FROM DECIMAL_TABLE; 
++---------------+ 
+| DECIMAL_VALUE | 
++---------------+ 
+|      
+|      
+ 7676357 | 
+ 7676357 | 
++---------------+ 
+2 rows in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE DECIMAL_TABLE1(DECIMAL_VALUE 
+DECIMAL(5,2)); 
+Query OK, 0 rows affected (0.0470 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DECIMAL_TABLE1 VALUES(7676356.58457); 
+ERROR: 1264 (22003): Out of range value for column 'DECIMAL_VALUE' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DECIMAL_TABLE1 VALUES(356.34); 
+Query OK, 1 row affected (0.0118 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO DECIMAL_TABLE1 VALUES(356.344); 
+Query OK, 1 row affected, 1 warning (0.0091 sec) 
+Note (code 1265): Data truncated for column 'DECIMAL_VALUE' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT* FROM DECIMAL_TABLE1; 
++---------------+ 
+| DECIMAL_VALUE | 
++---------------+ 
+|        
+|        
+356.34 | 
+356.34 | 
++---------------+ 
+2 rows in set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING(NAME NAME); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NAME)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING(NAME_OF_EMP NAME); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NAME)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING_TAB(NAME_OF_EMP NAME); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'NAME)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING_TAB(NAME_OF_EMP CHAR); 
+Query OK, 0 rows affected (0.0551 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB("SAI"); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near '"SAI")' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB VALUES("SAI"); 
+ERROR: 1406 (22001): Data too long for column 'NAME_OF_EMP' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM STRING_TAB; 
+Empty set (0.0008 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB VALUES("S"); 
+Query OK, 1 row affected (0.0127 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB VALUES("SA"); 
+ERROR: 1406 (22001): Data too long for column 'NAME_OF_EMP' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM STRING_TAB; 
++-------------+ 
+| NAME_OF_EMP | 
++-------------+ 
+| S           
+| 
++-------------+ 
+1 row in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING_TAB1(NAME_OF_EMP CHAR(10)); 
+Query OK, 0 rows affected (0.0494 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB1 VALUES("SAI AKHIL 
+MANIKANTA"); 
+ERROR: 1406 (22001): Data too long for column 'NAME_OF_EMP' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM STRING_TAB1; 
+Empty set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB1 VALUES("SAI AKHIL MANI"); 
+ERROR: 1406 (22001): Data too long for column 'NAME_OF_EMP' at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB1 VALUES("SAI AKHIL"); 
+Query OK, 1 row affected (0.0091 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM STRING_TAB1; 
++-------------+ 
+| NAME_OF_EMP | 
++-------------+ 
+| SAI AKHIL   | 
++-------------+ 
+1 row in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE STRING_TAB2(DESCRIPTION TEXT); 
+Query OK, 0 rows affected (0.0548 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO STRING_TAB2 
+VALUES("KSDHFEIUHFBWEGHOYFFBWYEGHGGRGNRIRV HGBYRG  GJHBRHG YURG ERYRBGHERBRY 
+FGBGFHSIUEF UFHERHGERHGIEURJNGURHGIURGHHHHHHHHHHHHHHHHHHHHHHHHH RIHG"); 
+Query OK, 1 row affected (0.0116 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM STRING_TAB2; 
++-------------------------------------------------------------------------------------------------------------------------------------------+ 
+| DESCRIPTION                                                                                                                               
+| 
++-------------------------------------------------------------------------------------------------------------------------------------------+ 
+| KSDHFEIUHFBWEGHOYFFBWYEGHGGRGNRIRV HGBYRG  GJHBRHG YURG ERYRBGHERBRY 
+FGBGFHSIUEF UFHERHGERHGIEURJNGURHGIURGHHHHHHHHHHHHHHHHHHHHHHHHH RIHG | 
++-------------------------------------------------------------------------------------------------------------------------------------------+ 
+1 row in set (0.0012 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE ENUM(GENDER 
+ENUM("MALE","FEMALE","OTHERS")); 
+Query OK, 0 rows affected (0.0682 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ENUM VALUES("MALE"); 
+Query OK, 1 row affected (0.0172 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT* FROM ENUM; 
++--------+ 
+| GENDER | 
++--------+ 
+| MALE   | 
++--------+ 
+1 row in set (0.0017 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SET(SUBJECTS_LIST 
+SET("PYTHON","JAVA","C")); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'SET(SUBJECTS_LIST 
+SET("PYTHON","JAVA","C"))' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE SET_TABLE(SUBJECTS_LIST 
+SET("PYTHON","JAVA","C")); 
+Query OK, 0 rows affected (0.0507 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SET_TABLE VALUES("PYTHON"); 
+Query OK, 1 row affected (0.0097 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SET_TABLE VALUES("PYTHON","JAVA"); 
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO SET_TABLE VALUES("PYTHON,JAVA"); 
+Query OK, 1 row affected (0.0084 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM SET_TABLE; 
++---------------+ 
+| SUBJECTS_LIST | 
++---------------+ 
+| PYTHON       
+ | 
+| PYTHON,JAVA   | 
++---------------+ 
+2 rows in set (0.0013 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE ALL(EVERYTHING LONGTEXT); 
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to 
+your MySQL server version for the right syntax to use near 'ALL(EVERYTHING LONGTEXT)' at line 1 
+MySQL  localhost:3306 ssl  akhil  SQL > CREATE TABLE ALL_(EVERYTHING LONGTEXT); 
+Query OK, 0 rows affected (0.0935 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ VALUES("PYTHON,jAVA"); 
+Query OK, 1 row affected (0.0172 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ VALUES(1,2,3,4,5,6,7); 
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ VALUES("1,2,3,4,5,6,7"); 
+Query OK, 1 row affected (0.0158 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ 
+VALUES("15498654845446457765494748665895698486798588"); 
+Query OK, 1 row affected (0.0070 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ VALUES("15498654SARNKHC096"); 
+Query OK, 1 row affected (0.0113 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ VALUES("THIS IS SAI AKHIL MANIKANTA 
+PALVAI"); 
+Query OK, 1 row affected (0.0428 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > INSERT INTO ALL_ 
+VALUES("FAHFUSDFJ75348564NVFU784569045 
+RJEU86U5JGME8456845JYMGK4J56U45JGJRD5Y856985GDUG5UTNVH9846"); 
+Query OK, 1 row affected (0.0215 sec) 
+MySQL  localhost:3306 ssl  akhil  SQL > SELECT *FROM ALL_; 
++-------------------------------------------------------------------------------------------+ 
+| EVERYTHING                                                                               
+ | 
++-------------------------------------------------------------------------------------------+ 
+| PYTHON,jAVA                                                                               
+| 1,2,3,4,5,6,7                                                                             
+| 15498654845446457765494748665895698486798588                                              
+| 15498654SARNKHC096                                                                       
+| THIS IS SAI AKHIL MANIKANTA PALVAI                                                       
+| FAHFUSDFJ75348564NVFU784569045 
+| 
+| 
+ | 
+RJEU86U5JGME8456845JYMGK4J56U45JGJRD5Y856985GDUG5UTNVH9846 | 
++-------------------------------------------------------------------------------------------+ 
+6 rows in set (0.0016 sec) 
+| 
+ | 
